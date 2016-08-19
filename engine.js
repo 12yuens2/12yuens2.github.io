@@ -3,18 +3,41 @@ function init() {
 	loadPlayer();
 	parseMonsterJSON();
 
+	//set interval for ticks
 	$.run = setInterval(tick, 1000);
-
 }
 
 
+/*
+ * Represents each in game tick
+ */
 function tick() {
 
 	//monsterTakeDamage
-	takeDamage($("#monster"), /*player_dmg*/ 10);
-
-	//checkPlayerHealth();
+	dealDamage($("#player"), $("#monster"));
 	checkMonsterHealth();
+
+	//playerTakeDamange
+	dealDamage($("#monster"), $("#player"));
+	checkPlayerHealth();
+}
+
+/*
+ * checkHealth function for any entity to reduce code duplication.
+ * Currently unused, but will probably be used in later versions.
+ * More flexible to implement other entities if needed.
+ */
+function checkHealth(entity) {
+	var hp = entity.attr("data-hp");
+
+	if (hp < 1) {
+		if (entity.attr("id") == "player") {
+			checkMonsterHealth(); //placeholder
+		} 
+		else if (entity.attr("id") == "monster") {
+			checkPlayerHealth(); //placeholder
+		}
+	}
 }
 
 function checkMonsterHealth() {
@@ -26,13 +49,30 @@ function checkMonsterHealth() {
 	}
 }
 
-function takeDamage(entity, dmg) {
-	var hp = entity.attr("data-hp");
+function checkPlayerHealth() {
+	var player_hp = $("#player").attr("data-hp");
 
-	//hp - dmg
-	entity.attr("data-hp", hp - dmg);
+	if (player_hp < 1) {
+		console.log("Player killed. Respawning...");
+		$("#player").attr("data-hp", $.player_info.hp);
+	}
 }
 
+/*
+ * Deals damage from dealer to taker
+ */
+function dealDamage(dmg_dealer, dmg_taker) {
+	var hp = dmg_taker.attr("data-hp");
+	var dmg = dmg_dealer.attr("data-dmg");
+
+	//hp - dmg
+	dmg_taker.attr("data-hp", hp - dmg);
+}
+
+
+/*
+ * Gives player exp and removes all attributes from $("#monster") node
+ */
 function killMonster() {
 
 	//give player exp
@@ -47,6 +87,9 @@ function killMonster() {
 
 }
 
+/*
+ * Spawn a random monster from $.monsters array
+ */
 function spawnMonster() {
 	var random_monster = $.monsters[Math.floor(Math.random()*$.monsters.length)];
 	populateEntityNode($("#monster"), random_monster);

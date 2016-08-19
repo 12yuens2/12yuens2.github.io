@@ -13,12 +13,17 @@ function loadPlayer() {
 	})
 }
 
+
+/*
+ * Create a label (child) at given node and
+ * add attributes from entity_info to given node.
+ */
 function populateEntityNode(node, entity_info) {
 
-	//visible name
+	//visible name label
 	var name = document.createElement("label");
-	name.className = "name";
-	name.innerHTML = entity_info.name;
+	$(name).addClass("name")
+		   .html(entity_info.name);
 	node.append(name);
 
 	// //hidden stats
