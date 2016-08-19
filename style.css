@@ -1,0 +1,11 @@
+#player {
+	float: left;
+}
+
+#monster {
+	float: right;
+}
+
+body {
+	width: 500px;
+}
