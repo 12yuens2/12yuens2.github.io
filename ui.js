@@ -21,31 +21,34 @@ function updateUI() {
 
 }
 
+function change_weapon(weapon) {
+	var dmg = $(weapon).attr("data-dmg");
+	var atk_spd = $(weapon).attr("data-atk-spd");
+
+	//change player stats
+	$("#player").attr("data-dmg", dmg);
+	$("#player").attr("data-atk-spd", atk_spd);
+
+	//reset attack cooldawn
+	$("#player").attr("data-atk-cd", atk_spd);
+}
+
 function atk_animate(node) {
 	if ($(node).attr("id") == "player") {
-		$(node).prev().animate({left: "+=30"}, 150);
-		$(node).prev().animate({left: "-=30"}, 100);
+		$(node).prev().animate({left: "+=30"}, 100);
+		$(node).prev().animate({left: "-=30"}, 60);
 	} else {
-		$(node).prev().animate({right: "+=30"}, 150);
-		$(node).prev().animate({right: "-=30"}, 100);
+		$(node).prev().animate({right: "+=30"}, 100);
+		$(node).prev().animate({right: "-=30"}, 60);
 	}
 }
 
 function cdBar(node) {
-	var cd = $(node).attr("data-atk-spd");
+	var spd = $(node).attr("data-atk-spd");
+	var cd = $(node).attr("data-atk-cd");
 	var bar_node = $(node).find("div.progress").children()[0];
 
-	var add_width = 100/cd;
-	var cur_width = $(bar_node).width();
-	var bar_width = 0;
-
-	if (add_width + cur_width > 100) {
-		bar_with = 0;
-	} else {
-		bar_width = add_width + cur_width;
-	}
-
-	// console.log($(bar_node));w
+	var bar_width = ((spd - cd)/spd) * 100;
 
 	$(bar_node).animate({
 		width: bar_width
