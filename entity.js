@@ -44,6 +44,16 @@ function populateEntityNode(node, entity_info) {
 
 	//set attack cooldown
 	$(node).attr("data-atk-cd", $(node).attr("data-atk-spd"));
+
+	//progress bar
+	var progress = document.createElement("div");
+	var progress_bar = document.createElement("div");
+
+	$(progress).addClass("progress");
+	$(progress_bar).addClass("progress_bar");
+
+	$(progress).append(progress_bar);
+	node.append(progress);
 }
 
 

@@ -112,24 +112,6 @@ function checkExp() {
 	}
 }
 
-function updateUI() {
-
-	//each entity
-	$(".entity").each(function (i) {
-		var entity = this;
-
-		//each visible stat (label)
-		$(this).children("label").each(function () {
-			var stat = $(this).attr("class");
-
-			if (isVisible(stat)) {
-				//get stat from attr("data-[stat]") and display in html
-				$(this).html(stat + ": " + $(entity).attr("data-"+stat));
-			}
-
-		});
-	});
-}
 
 /*
  * Spawn a random monster from $.monsters array

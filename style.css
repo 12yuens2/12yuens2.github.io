@@ -9,3 +9,19 @@
 body {
 	width: 500px;
 }
+
+
+.progress {
+	float: left;
+	clear: both;
+	height: 20px;
+	width: 100px;
+	border: 1px solid black;
+}
+
+.progress_bar {
+	width: 0;
+	height: 20px;
+	color: black;
+	background-color: black;
+}
