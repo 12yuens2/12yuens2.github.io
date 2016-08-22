@@ -2,5 +2,6 @@
 	"name": "Player 1",
 	"hp": 100,
 	"dmg": 10,
-	"exp": 0
+	"exp": 0,
+	"atk-spd": 2
 }

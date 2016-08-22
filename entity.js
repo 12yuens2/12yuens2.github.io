@@ -1,3 +1,7 @@
+function isVisible(stat) {
+	return stat === "atk-spd" ? false : true;
+}
+
 function parseMonsterJSON() {
 	$.getJSON("monsters.json", function (json) {
 		$.monsters = json;
@@ -10,6 +14,7 @@ function loadPlayer() {
 		$.player_info = json;
 
 		populateEntityNode($("#player"), $.player_info)
+		$("#player").attr("data-lvl", 1);
 	})
 }
 
@@ -20,21 +25,25 @@ function loadPlayer() {
  */
 function populateEntityNode(node, entity_info) {
 
-	//visible name label
-	var name = document.createElement("label");
-	$(name).addClass("name")
-		   .html(entity_info.name);
-	node.append(name);
+	//visible stats
+	var stats = ["name", "hp", "dmg", "exp", "atk-spd"];
+	for (var i = 0; i<stats.length; i++) {
 
-	// //hidden stats
-	$(node).attr("data-hp", entity_info.hp);
-	$(node).attr("data-dmg", entity_info.dmg);
-	$(node).attr("data-exp", entity_info.exp);
+		//visible stats
+		if (isVisible(stats[i])) {
+			var label = document.createElement("label");
+			$(label).addClass(stats[i])
+					.html(stats[i] + ": " + entity_info[stats[i]]);
+			node.append(label);
+			node.append("<br>");
+		}
 
+		//hidden stats
+		$(node).attr("data-" + stats[i], entity_info[stats[i]]);
+	}
 
-	// var hp = document.createElement("input");
-	// var dmg = document.createElement("input");
-	// var exp = document.createElement("input");
+	//set attack cooldown
+	$(node).attr("data-atk-cd", $(node).attr("data-atk-spd"));
 }
 
 

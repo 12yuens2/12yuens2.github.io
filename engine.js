@@ -4,7 +4,7 @@ function init() {
 	parseMonsterJSON();
 
 	//set interval for ticks
-	$.run = setInterval(tick, 1000);
+	$.run = setInterval(tick, 500);
 }
 
 
@@ -20,6 +20,9 @@ function tick() {
 	//playerTakeDamange
 	dealDamage($("#monster"), $("#player"));
 	checkPlayerHealth();
+
+	checkExp();
+	updateUI();
 }
 
 /*
@@ -59,14 +62,22 @@ function checkPlayerHealth() {
 }
 
 /*
- * Deals damage from dealer to taker
+ * Deals damage from dealer to taker, only if CD is 0
  */
 function dealDamage(dmg_dealer, dmg_taker) {
-	var hp = dmg_taker.attr("data-hp");
-	var dmg = dmg_dealer.attr("data-dmg");
+	var cd = dmg_dealer.attr("data-atk-cd");
+	if (cd == 0 ) {
+		var hp = dmg_taker.attr("data-hp");
+		var dmg = dmg_dealer.attr("data-dmg");
 
-	//hp - dmg
-	dmg_taker.attr("data-hp", hp - dmg);
+		//hp - dmg
+		dmg_taker.attr("data-hp", hp - dmg);
+
+		//reset cd
+		dmg_dealer.attr("data-atk-cd", dmg_dealer.attr("data-atk-spd"));
+	} else {
+		dmg_dealer.attr("data-atk-cd", parseInt(cd) - 1);
+	}
 }
 
 
@@ -84,7 +95,40 @@ function killMonster() {
 	$("#monster").attr("data-hp", "");
 	$("#monster").attr("data-dmg", "");
 	$("#monster").attr("data-exp", "");
+}
 
+function levelUp() {
+
+	//take exp from player
+	$("#player").attr("data-exp", parseInt($("#player").attr("data-exp"))-100);
+
+	//increase player level by 1
+	$("#player").attr("data-lvl", parseInt($("#player").attr("data-lvl"))+1);
+}
+
+function checkExp() {
+	while ($("#player").attr("data-exp") >= 100) {
+		levelUp();
+	}
+}
+
+function updateUI() {
+
+	//each entity
+	$(".entity").each(function (i) {
+		var entity = this;
+
+		//each visible stat (label)
+		$(this).children("label").each(function () {
+			var stat = $(this).attr("class");
+
+			if (isVisible(stat)) {
+				//get stat from attr("data-[stat]") and display in html
+				$(this).html(stat + ": " + $(entity).attr("data-"+stat));
+			}
+
+		});
+	});
 }
 
 /*
@@ -94,3 +138,4 @@ function spawnMonster() {
 	var random_monster = $.monsters[Math.floor(Math.random()*$.monsters.length)];
 	populateEntityNode($("#monster"), random_monster);
 }
+
