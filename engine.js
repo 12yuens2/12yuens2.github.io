@@ -75,6 +75,8 @@ function dealDamage(dmg_dealer, dmg_taker) {
 
 		//reset cd
 		dmg_dealer.attr("data-atk-cd", dmg_dealer.attr("data-atk-spd"));
+
+		atk_animate(dmg_dealer);
 	} else {
 		dmg_dealer.attr("data-atk-cd", parseInt(cd) - 1);
 	}

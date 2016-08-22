@@ -1,15 +1,24 @@
-#player {
+#left {
 	float: left;
 }
-
-#monster {
+#right {
 	float: right;
 }
 
+
 body {
 	width: 500px;
+	padding: 20px;
 }
 
+
+.object img {
+	position: absolute;
+}
+
+.entity {
+	margin-top: 100px;
+}
 
 .progress {
 	float: left;

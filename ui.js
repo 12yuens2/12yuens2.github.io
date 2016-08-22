@@ -21,6 +21,16 @@ function updateUI() {
 
 }
 
+function atk_animate(node) {
+	if ($(node).attr("id") == "player") {
+		$(node).prev().animate({left: "+=30"}, 150);
+		$(node).prev().animate({left: "-=30"}, 100);
+	} else {
+		$(node).prev().animate({right: "+=30"}, 150);
+		$(node).prev().animate({right: "-=30"}, 100);
+	}
+}
+
 function cdBar(node) {
 	var cd = $(node).attr("data-atk-spd");
 	var bar_node = $(node).find("div.progress").children()[0];
