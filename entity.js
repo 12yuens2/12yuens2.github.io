@@ -26,7 +26,7 @@ function loadPlayer() {
 function populateEntityNode(node, entity_info) {
 
 	//visible stats
-	var stats = ["name", "hp", "dmg", "exp", "atk-spd"];
+	var stats = ["name", "hp", "dmg", "exp", "lvl", "atk-spd"];
 	for (var i = 0; i<stats.length; i++) {
 
 		//visible stats
