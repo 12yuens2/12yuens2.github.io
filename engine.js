@@ -56,7 +56,7 @@ function checkPlayerHealth() {
 	var player_hp = $("#player").attr("data-hp");
 
 	if (player_hp < 1) {
-		console.log("Player killed. Respawning...");
+		logger.log("Player killed. Respawning...");
 		$("#player").attr("data-hp", $.player_info.hp);
 	}
 }
@@ -89,14 +89,21 @@ function dealDamage(dmg_dealer, dmg_taker) {
 function killMonster() {
 
 	//give player exp
-	var exp = parseInt($("#player").attr("data-exp")) + parseInt($("#monster").attr("data-exp"));
+	var monster_exp = parseInt($("#monster").attr("data-exp"));
+	var exp = parseInt($("#player").attr("data-exp")) + monster_exp;
 	$("#player").attr("data-exp", exp);
+
+	if ($("#killFilter").is(":checked")) {
+		logger.log($("#monster").attr("data-name") + " killed! Got " + monster_exp +" experience!");
+	}
 
 	//kill the monster
 	$("#monster").html("");
 	$("#monster").attr("data-hp", "");
 	$("#monster").attr("data-dmg", "");
 	$("#monster").attr("data-exp", "");
+
+
 }
 
 function levelUp() {
@@ -105,7 +112,10 @@ function levelUp() {
 	$("#player").attr("data-exp", parseInt($("#player").attr("data-exp"))-100);
 
 	//increase player level by 1
-	$("#player").attr("data-lvl", parseInt($("#player").attr("data-lvl"))+1);
+	var level = parseInt($("#player").attr("data-lvl"));
+	$("#player").attr("data-lvl", level+1);
+
+	logger.log("Leveled up! Now level " + level);
 }
 
 function checkExp() {

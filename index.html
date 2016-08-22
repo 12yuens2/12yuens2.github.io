@@ -3,6 +3,7 @@
 <head>
 	<!--Idle Monster Killing Simulator, Version 0.003-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="logger.js"></script>
 	<script src="ui.js"></script>
 	<script src="monsters.json"></script>
 	<script src="entity.js"></script>
@@ -32,6 +33,15 @@
 		data-dmg="15" data-atk-spd="3" onclick="change_weapon(this);">
 		<input type="button" value="fast"
 		data-dmg="5" data-atk-spd="1" onclick="change_weapon(this);">
+	</div>
+
+	<div style="float: left; clear: both; margin-top: 15px">
+		<input type="checkbox" id="killFilter"> Display monster kills
+	</div>
+
+	<div id="logger">
+		<div class="log">Hello world!</div>
+		<div class="log">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
 	</div>
 
 </body>
