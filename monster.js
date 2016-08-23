@@ -60,7 +60,7 @@ var monster =  {
 	},
 
 
-	drop_item: function(debug) {
+	drop_item: function() {
 		var chance = Math.floor(Math.random()*100) ;
 
 		if (chance < monster.drop_chance) {
