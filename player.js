@@ -58,6 +58,8 @@ var player = {
 
 		//change later to be addition instead of replace dmg
 		player.dmg = weapon.dmg;
+
+		ui.update_bag();
 	},
 
 	level_up: function(exp) {
