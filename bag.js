@@ -1,10 +1,10 @@
 var bag = {
 	node: null,
-	max_space: 5,
+	max_space: 10,
 	items: [],
 
 	init: function() {
-		bag.node = $("#itemScreen");
+		bag.node = $("#bag");
 	},
 	add_item: function(item) {
 		if (bag.items.length < bag.max_space) {
@@ -22,5 +22,9 @@ var bag = {
 
 		console.log(index + "  " + bag.items);
 		ui.update_bag();
+	},
+
+	is_full: function() {
+		return bag.items.length === bag.max_space ? true : false;
 	}
 };

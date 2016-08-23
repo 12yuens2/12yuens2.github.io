@@ -17,6 +17,7 @@ var engine = {
 		engine.check_health(monster);
 		engine.check_health(player);
 		engine.check_exp();
+		engine.check_bag();
 
 		ui.update();
 	},
@@ -46,6 +47,15 @@ var engine = {
 	check_exp: function() {
 		while(player.exp >= 100) {
 			player.level_up(100);
+		}
+	},
+
+	check_bag: function() {
+		if (bag.is_full() && $("#auto_sell").is(":checked")) {
+			logger.log("Auto selling loot");
+			for (var i = 0; i<bag.max_space; i++) {
+				bag.sell(0);
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@
 
 <head>
 	<!--Idle Monster Killing Simulator, Version 0.012-->
+	<title>Idle Slayer v0.012</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="logger.js"></script>
 	<script src="ui.js"></script>
@@ -38,7 +39,7 @@
 			data-dmg="5" data-atk-spd="1" onclick="change_weapon(this);">
 		</div>
 
-		<div style="float: left; clear: both; margin-top: 15px">
+		<div class="checkbox_option">
 			<input type="checkbox" id="killFilter" checked> Display monster kills
 		</div>
 
@@ -48,15 +49,22 @@
 	</div>
 
 	<div id="itemScreen" class="left">
+		<div id="bag">
+			<!-- template for item divs -->
+				<!--<div class="item">
+				<label>Halberd</label>
+				<div class="right">
+					<input type="button" value="Equip">
+					<input type="button" value="Sell">
+				</div>
+			</div> -->
+		</div>
 
-		<!-- template for item divs -->
-		<!--<div class="item">
-			<label>Halberd</label>
-			<div class="right">
-				<input type="button" value="Equip">
-				<input type="button" value="Sell">
-			</div>
-		</div> -->
+		<div>
+			<input type="checkbox" id="auto_sell" checked> Auto sell items
+
+		</div>
+
 
 	</div>
 

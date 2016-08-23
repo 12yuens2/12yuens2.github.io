@@ -51,7 +51,19 @@
 /*** Item screen things ***/
 #itemScreen {
 	width: 300px;
-	height: 300px;
+	height: 400px;
+	/*border: 1px solid red;*/
+}
+
+.checkbox_option {
+	float: left; 
+	clear: both; 
+	margin-top: 15px
+}
+
+#bag {
+	width: 400px;
+	height: 400px;
 	border: 1px solid red;
 }
 

@@ -7,6 +7,7 @@
 		"lvl": 1,
 
 		"atk_spd": 1,
+		"drop_chance": 100,
 		"drop_table" : {
 							"s1": 50,
 							"d1": 20
@@ -23,6 +24,7 @@
 		"lvl": 1,
 
 		"atk_spd": 1,
+		"drop_chance": 111,
 		"drop_table" : {
 							"s1": 40,
 							"d1": 25
@@ -39,6 +41,7 @@
 		"lvl": 1,
 
 		"atk_spd": 3,
+		"drop_chance": 150,
 		"drop_table" : {
 							"s1": 20,
 							"d1": 20,
@@ -56,6 +59,7 @@
 		"lvl": 1,
 
 		"atk_spd": 3,
+		"drop_chance": 150,
 		"drop_table" : {
 							"s1": 10,
 							"d1": 10,

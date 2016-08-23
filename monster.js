@@ -1,5 +1,5 @@
 var monster =  {
-	stats: ["name", "hp", "dmg", "exp", "lvl", "atk-spd", "drop_table", "gold_max", "gold_min"],
+	stats: ["name", "hp", "dmg", "exp", "lvl", "atk-spd", "drop_chance", "drop_table", "gold_max", "gold_min"],
 	visible_stats: ["name", "hp", "dmg", "exp", "lvl"],
 	node: $("#monster"),
 	list: [],
@@ -12,6 +12,7 @@ var monster =  {
 	level: 1,
 
 	atk_spd : 3,
+	drop_chance: 5,
 	drop_table: {
 					S1: 20,
 					D1: 20,
@@ -59,16 +60,33 @@ var monster =  {
 	},
 
 
-	drop_item: function() {
+	drop_item: function(debug) {
 		var chance = Math.floor(Math.random()*100) ;
 
-		$.each(monster.drop_table, function(k, v) {
-			if (v < chance) {
-				logger.log(monster.name + " dropped a " + entity.weapons[k].name + "!");
-				bag.add_item(entity.weapons[k]);
-				return false;
+		if (chance < monster.drop_chance) {
+			var rarity = Math.floor(Math.random()*100);
+			var drops = [];
+
+			//populate potenial drops
+			$.each(monster.drop_table, function(k, v) {
+				if (v < rarity) {
+					drops.push(entity.weapons[k]);
+				}
+			});
+
+			//get one drop from list
+			if (drops.length < 1) {
+				//no drops due to rarity
+			} else {
+				var drop_num = Math.floor(Math.random()*drops.length);
+				var drop = drops[drop_num];
+
+				logger.log(monster.name + " dropped a " + drop.name + "!");
+				bag.add_item(drop);
 			}
-		});
+
+
+		}
 	},
 
 	kill: function() {
