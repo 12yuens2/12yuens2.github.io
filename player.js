@@ -48,10 +48,15 @@ var player = {
 	},
 
 	equip: function(weapon_index) {
+
 		var weapon = bag.items[weapon_index];
 		logger.log("Equipped " + weapon.name);
-
 		bag.items.splice(weapon_index, 1);
+
+		//put old equip back in bag
+		if (player.equiped_weapon != null) {
+			bag.items.push(player.equiped_weapon);
+		}
 		player.equiped_weapon = weapon;
 		player.weapon = weapon.name;
 		player.atk_spd = weapon.atk_spd;
