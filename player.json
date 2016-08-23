@@ -1,9 +1,0 @@
-{
-	"name": "Player 1",
-	"hp": 100,
-	"dmg": 10,
-	"exp": 0,
-	"lvl": 1,
-	
-	"atk-spd": 2
-}
