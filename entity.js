@@ -1,4 +1,12 @@
 var entity = {
+	weapons: "",
+
+	load_weapons: function() {
+		$.getJSON("./data/weapons.json", function(weapons) {
+			entity.weapons = weapons;
+		});
+	},
+
 	populateEntityNode: function(entity, node, entity_info) {
 		var stats = entity.visible_stats;
 		for (var i = 0; i<stats.length; i++) {
@@ -21,4 +29,6 @@ var entity = {
 		$(progress).append(progress_bar);
 		node.append(progress);
 	}
+
+
 };

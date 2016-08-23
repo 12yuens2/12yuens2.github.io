@@ -1,5 +1,7 @@
 var ui = {
 	entities: "",
+	bag_index: 0,
+
 	init: function() {
 		ui.entities = $(".entity");
 	},
@@ -31,14 +33,48 @@ var ui = {
 		}, engine.tick/entity.atk_spd);
 	},
 
+	update_bag: function() {
+		bag.node.html("");
+		$.each(bag.items, function() {
+			var item_wrap = document.createElement("div");
+			$(item_wrap).addClass("item");
+
+			var name = document.createElement("label");
+			$(name).html(this.name);
+
+			var equip = document.createElement("input");
+			$(equip)
+				.attr("type", "button")
+				.attr("value", "Equip");
+
+			var sell = document.createElement("input");
+			$(sell)
+				.attr("type", "button")
+				.attr("value", "Sell")
+				.attr("onclick", "bag.sell($(this).parent().parent().index());");
+
+			var button_wrap = document.createElement("div");
+			$(button_wrap)
+				.addClass("right")
+				.append(equip)
+				.append(sell);
+
+			$(item_wrap)
+				.append(name)
+				.append(button_wrap);
+
+			bag.node.append(item_wrap);
+		});
+	},
+
 	animate_atk: function(entity) {
 		var node = entity.node;
 		if ($(node).attr("id") == "player") {
 			$(node).prev().animate({left: "+=30"}, engine.tick/5);
 			$(node).prev().animate({left: "-=30"}, engine.tick/8);
 		} else {
-			$(node).prev().animate({right: "+=30"}, engine.tick/5);
-			$(node).prev().animate({right: "-=30"}, engine.tick/8);
+			$(node).prev().animate({left: "-=30"}, engine.tick/5);
+			$(node).prev().animate({left: "+=30"}, engine.tick/8);
 		}
 	}
 };

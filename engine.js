@@ -6,6 +6,8 @@ var engine = {
 		player.load();
 		monster.load();
 		ui.init();
+		bag.init();
+		entity.load_weapons();
 
 		engine.run = setInterval(engine.move, engine.tick);
 	},

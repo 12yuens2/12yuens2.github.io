@@ -1,6 +1,6 @@
 var player = {
-	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd"],
-	visible_stats: ["name", "hp", "dmg", "exp", "lvl"],
+	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
+	visible_stats: ["name", "hp", "dmg", "exp", "lvl", "gold"],
 	node: $("#player"),
 
 	/** player stats **/
@@ -10,6 +10,7 @@ var player = {
 	dmg: 0,
 	exp: 0,
 	lvl: 0,
+	gold: 0,
 
 	atk_spd: 0,
 	atk_cd: 0,
@@ -46,7 +47,6 @@ var player = {
 
 
 	level_up: function(exp) {
-		console.log(exp);
 		player.exp -= exp;
 		player.lvl += 1;
 

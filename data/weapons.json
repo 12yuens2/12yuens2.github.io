@@ -2,24 +2,36 @@
 	"s1": {
 		"name": "Sword1",
 		"dmg": 5,
-		"atk-spd": 2
+		"atk-spd": 2,
+
+		"sell_value": 10,
+		"buy_value": 50
 	},
 
 	"a1": {
 		"name": "Axe1",
 		"dmg": 15,
-		"atk-spd": 5
+		"atk-spd": 5,
+
+		"sell_value": 20,
+		"buy_value": 70
 	},
 
 	"d1": {
 		"name": "Dagger1",
 		"dmg": 3,
-		"atk-spd": 1
+		"atk-spd": 1,
+
+		"sell_value": 15,
+		"buy_value": 30
 	},
 
 	"g1": {
 		"name": "God1",
 		"dmg": 100,
-		"atk-spd": 1
+		"atk-spd": 1,
+
+		"sell_value": 1,
+		"buy_value": 50000
 	}
 }
