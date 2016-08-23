@@ -1,6 +1,6 @@
 var player = {
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
-	visible_stats: ["name", "hp", "dmg", "exp", "lvl", "gold"],
+	visible_stats: ["name", "hp", "dmg", "exp", "lvl", "gold", "weapon"],
 	node: $("#player"),
 
 	/** player stats **/
@@ -11,9 +11,11 @@ var player = {
 	exp: 0,
 	lvl: 0,
 	gold: 0,
+	weapon: "None",
 
 	atk_spd: 0,
 	atk_cd: 0,
+	equiped_weapon: null,
 
 	/** misc **/
 	death_message: "Player killed. Respawning...",
@@ -45,6 +47,18 @@ var player = {
 		player.max_hp = player.hp;
 	},
 
+	equip: function(weapon_index) {
+		var weapon = bag.items[weapon_index];
+		logger.log("Equipped " + weapon.name);
+
+		bag.items.splice(weapon_index, 1);
+		player.equiped_weapon = weapon;
+		player.weapon = weapon.name;
+		player.atk_spd = weapon.atk_spd;
+
+		//change later to be addition instead of replace dmg
+		player.dmg = weapon.dmg;
+	},
 
 	level_up: function(exp) {
 		player.exp -= exp;

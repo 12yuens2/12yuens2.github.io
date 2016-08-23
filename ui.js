@@ -45,7 +45,8 @@ var ui = {
 			var equip = document.createElement("input");
 			$(equip)
 				.attr("type", "button")
-				.attr("value", "Equip");
+				.attr("value", "Equip")
+				.attr("onclick", "player.equip($(this).parent().parent().index());");
 
 			var sell = document.createElement("input");
 			$(sell)
