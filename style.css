@@ -1,16 +1,15 @@
-#left {
+.left {
 	float: left;
 }
-#right {
+.right {
 	float: right;
 }
 
-
-body {
+/*** Main screen things ***/
+#mainScreen {
 	width: 500px;
 	padding: 20px;
 }
-
 
 .object img {
 	position: absolute;
@@ -21,7 +20,6 @@ body {
 }
 
 .progress {
-	float: left;
 	clear: both;
 	height: 20px;
 	width: 100px;
@@ -37,7 +35,6 @@ body {
 
 #logger {
 	margin-top: 20px;
-	float: left;
 	width: 500px;
 	height: 300px;
 	border: 1px solid black;
@@ -45,8 +42,25 @@ body {
 }
 
 .log {
-	float: left;
 	clear: both;
 	margin-bottom: 10px;
 	padding: 5px;
+}
+
+
+/*** Item screen things ***/
+#itemScreen {
+	width: 300px;
+	height: 300px;
+	border: 1px solid red;
+}
+
+.item {
+	/*width: 100%;*/
+	clear: both;
+	padding: 10px;
+}
+
+.item:hover {
+	background-color: pink;
 }
