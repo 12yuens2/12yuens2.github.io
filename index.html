@@ -1,47 +1,62 @@
 <html>
 
 <head>
-	<!--Idle Monster Killing Simulator, Version 0.004-->
+	<!--Idle Monster Killing Simulator, Version 0.01-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="logger.js"></script>
 	<script src="ui.js"></script>
-	<script src="monsters.json"></script>
 	<script src="entity.js"></script>
+	<script src="monster.js"></script>
+	<script src="player.js"></script>
 	<script src="engine.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="init()">
+<body onload="engine.init()">
 
-	<div class="object" id="left">
-		<img src="placeholder.jpg">
-		<div class="entity" id="player"></div>
+	<div id="mainScreen" class="left">
+		<div class="object left">
+			<img src="placeholder.jpg">
+			<div class="entity" id="player"></div>
+		</div>
+
+		<div class="object right">
+			<img src="placeholder.jpg">
+			<div class="entity" id="monster"></div>
+		</div>
+
+
+		<!-- These weapons should be loaded in a json file later-->
+		<!-- value would be name of weapon -->
+		<div class="buttons" style="margin-top: 50px;float: left; clear: both;">
+			<input type="button" value="slow"
+			data-dmg="30" data-atk-spd="5" onclick="change_weapon(this);">
+			<input type="button" value="medium"
+			data-dmg="15" data-atk-spd="3" onclick="change_weapon(this);">
+			<input type="button" value="fast"
+			data-dmg="5" data-atk-spd="1" onclick="change_weapon(this);">
+		</div>
+
+		<div style="float: left; clear: both; margin-top: 15px">
+			<input type="checkbox" id="killFilter" checked> Display monster kills
+		</div>
+
+		<div id="logger" class="left">
+
+		</div>
 	</div>
 
-	<div class="object" id="right">
-		<img src="placeholder.jpg">
-		<div class="entity" id="monster"></div>
-	</div>
+	<div id="itemScreen" class="left">
+		<div class="item">
+			<label>Halberd</label>
+			<div class="right">
+				<input type="button" value="Equip">
+				<input type="button" value="Sell">
+			</div>
+		</div>
 
+		<div class="item">Lorem Ipsum</div>
 
-	<!-- These weapons should be loaded in a json file later-->
-	<!-- value would be name of weapon -->
-	<div class="weapons" style="margin-top: 50px;float: left; clear: both;">
-		<input type="button" value="slow"
-		data-dmg="30" data-atk-spd="5" onclick="change_weapon(this);">
-		<input type="button" value="medium"
-		data-dmg="15" data-atk-spd="3" onclick="change_weapon(this);">
-		<input type="button" value="fast"
-		data-dmg="5" data-atk-spd="1" onclick="change_weapon(this);">
-	</div>
-
-	<div style="float: left; clear: both; margin-top: 15px">
-		<input type="checkbox" id="killFilter" checked> Display monster kills
-	</div>
-
-	<div id="logger">
-		<div class="log">Hello world!</div>
-		<div class="log">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
 	</div>
 
 </body>

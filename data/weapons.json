@@ -1,0 +1,25 @@
+{
+	"s1": {
+		"name": "Sword1",
+		"dmg": 5,
+		"atk-spd": 2
+	},
+
+	"a1": {
+		"name": "Axe1",
+		"dmg": 15,
+		"atk-spd": 5
+	},
+
+	"d1": {
+		"name": "Dagger1",
+		"dmg": 3,
+		"atk-spd": 1
+	},
+
+	"g1": {
+		"name": "God1",
+		"dmg": 100,
+		"atk-spd": 1
+	}
+}

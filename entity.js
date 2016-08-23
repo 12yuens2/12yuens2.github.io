@@ -1,59 +1,24 @@
-function isVisible(stat) {
-	return stat === "atk-spd" ? false : true;
-}
+var entity = {
+	populateEntityNode: function(entity, node, entity_info) {
+		var stats = entity.visible_stats;
+		for (var i = 0; i<stats.length; i++) {
+			var stat = document.createElement("div");
+			$(stat)
+				.addClass(stats[i])
+				.html(stats[i] + ": " + entity_info[stats[i]]);
 
-function parseMonsterJSON() {
-	$.getJSON("monsters.json", function (json) {
-		$.monsters = json;
-		spawnMonster();
-	});
-}
-
-function loadPlayer() {
-	$.getJSON("player.json", function(json) {
-		$.player_info = json;
-
-		populateEntityNode($("#player"), $.player_info)
-		$("#player").attr("data-lvl", 1);
-	})
-}
-
-
-/*
- * Create a label (child) at given node and
- * add attributes from entity_info to given node.
- */
-function populateEntityNode(node, entity_info) {
-
-	//visible stats
-	var stats = ["name", "hp", "dmg", "exp", "lvl", "atk-spd"];
-	for (var i = 0; i<stats.length; i++) {
-
-		//visible stats
-		if (isVisible(stats[i])) {
-			var label = document.createElement("label");
-			$(label).addClass(stats[i])
-					.html(stats[i] + ": " + entity_info[stats[i]]);
-			node.append(label);
+			node.append(stat);
 			node.append("<br>");
 		}
 
-		//hidden stats
-		$(node).attr("data-" + stats[i], entity_info[stats[i]]);
+		//progress bar
+		var progress = document.createElement("div");
+		var progress_bar = document.createElement("div");
+
+		$(progress).addClass("progress");
+		$(progress_bar).addClass("progress_bar");
+
+		$(progress).append(progress_bar);
+		node.append(progress);
 	}
-
-	//set attack cooldown
-	$(node).attr("data-atk-cd", $(node).attr("data-atk-spd"));
-
-	//progress bar
-	var progress = document.createElement("div");
-	var progress_bar = document.createElement("div");
-
-	$(progress).addClass("progress");
-	$(progress_bar).addClass("progress_bar");
-
-	$(progress).append(progress_bar);
-	node.append(progress);
-}
-
-
+};
