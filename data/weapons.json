@@ -33,5 +33,34 @@
 
 		"sell_value": 1,
 		"buy_value": 50000
+	},
+
+
+
+	"s2": {
+		"name": "Sword2",
+		"dmg": 30,
+		"atk_spd": 2,
+
+		"sell_value": 20,
+		"buy_value": 50
+	},
+
+	"a2": {
+		"name": "Axe2",
+		"dmg": 50,
+		"atk_spd": 4,
+
+		"sell_value": 30,
+		"buy_value": 70
+	},
+
+	"d2": {
+		"name": "Dagger2",
+		"dmg": 11,
+		"atk_spd": 1,
+
+		"sell_value": 45,
+		"buy_value": 30
 	}
 }

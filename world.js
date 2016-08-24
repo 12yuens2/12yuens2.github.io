@@ -44,7 +44,7 @@ var world = {
 			world.mobs = monsters;
 			world.spawn_random();
 			world.mob = monster;
-		})
+		});
 	},
 
 	load_weapons: function() {
