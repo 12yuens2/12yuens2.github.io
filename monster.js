@@ -6,6 +6,7 @@ var monster =  {
 
 	/** monster stats **/
 	name: "m3",
+	max_hp: 2,
 	hp: 12,
 	dmg: 5,
 	exp: 12,
@@ -48,6 +49,7 @@ var monster =  {
 			monster[monster.stats[i]] = new_monster[monster.stats[i]];
 		}
 		monster.atk_cd = monster.atk_spd;
+		monster.max_hp = monster.hp;
 	},
 
 

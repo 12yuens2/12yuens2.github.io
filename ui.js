@@ -48,11 +48,10 @@ var ui = {
 
 	update_cdbar: function(entity, node) {
 		var bar_node = $(node).find("div.progress").children()[0];
-		var bar_width = ((entity.atk_spd - entity.atk_cd) / entity.atk_spd) * 100;
+		// var bar_width = ((entity.atk_spd - entity.atk_cd) / entity.atk_spd) * 100;
 
-		$(bar_node).animate({
-			width: bar_width
-		}, engine.tick/entity.atk_spd);
+		var bar_width = parseInt((entity.hp / entity.max_hp)*100) 
+		$(bar_node).animate({width: bar_width}, engine.tick);
 	},
 
 	update_bag: function() {

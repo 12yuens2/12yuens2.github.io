@@ -41,6 +41,8 @@ var engine = {
 
 	check_health: function(entity) {
 		if (entity.hp < 1) {
+			ui.update_cdbar(entity, entity.node)
+
 			entity.kill();
 
 			if (world.changing_region) {
