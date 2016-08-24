@@ -17,9 +17,7 @@ var world = {
 		world.next_region = region;
 		world.changing_region = true;
 
-		$(".regions").children().each(function() {
-			$(this).prop("disabled", true);
-		});
+		ui.update_region();
 	},
 
 	move: function() {
@@ -31,9 +29,7 @@ var world = {
 		world.load_mobs();
 		world.load_weapons();
 
-		$(".regions").children().each(function() {
-			$(this).prop("disabled", false);
-		});
+		ui.update_region();
 
 	},
 

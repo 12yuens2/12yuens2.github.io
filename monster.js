@@ -94,6 +94,10 @@ var monster =  {
 		monster.node.html("");
 	},
 
+	flee: function() {
+		monster.node.html("");
+	},
+
 	respawn: function() {
 		world.spawn_random();
 	}

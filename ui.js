@@ -22,6 +22,28 @@ var ui = {
 
 			ui.update_cdbar(e, this);
 		});
+
+		ui.update_heal();
+	},
+
+	update_heal: function() {
+		var button = $(".heal");
+		if (player.hp < player.max_hp && player.heal_cd < 1) {
+			button.prop("disabled", false);
+		} else {
+			button.prop("disabled", true);
+			player.heal_cd -= 1;
+		}
+	},
+
+	update_region: function() {
+		$(".regions").children().each(function() {
+			if (world.changing_region) {
+				$(this).prop("disabled", true);
+			} else {
+				$(this).prop("disabled", false);
+			}
+		});
 	},
 
 	update_cdbar: function(entity, node) {

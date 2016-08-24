@@ -15,6 +15,8 @@ var player = {
 
 	atk_spd: 0,
 	atk_cd: 0,
+	heal_spd: 5,
+	heal_cd: 0,
 	equiped_weapon: null,
 
 	/** misc **/
@@ -74,13 +76,31 @@ var player = {
 		logger.log("Leveled up! Now level " + player.lvl);
 	},
 
+	heal: function() {
+		$(".heal").prop("disabled", true);
+
+		var heal = parseInt(player.max_hp / 3);
+
+		if (heal + player.hp > player.max_hp) {
+			player.hp = player.max_hp;
+		} else {
+			player.hp += heal;
+		}
+
+		ui.update();
+		ui.update_heal();
+
+		player.heal_cd = player.heal_spd;
+	},
 
 	kill: function() {
 		logger.log(player.death_message);
+		monster.flee();
 	},
 
 	respawn: function() {
 		player.hp = player.max_hp;
+		world.spawn_random();
 	}
 
 
