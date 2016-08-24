@@ -1,13 +1,57 @@
 notes
 
-where x = lvl 
+where x = level
 exp to lvl = x^2 
 player stat:
 hp = 100+10x
 dmg = 10+5x
+
+Stat allocation: +20 hp per stat point, +10dmg per stat point (double of level increase)
 
 Mob stat:
 hp = 100+20x
 dmg = 10+2x
 
 +some Y, where y = points allocated on lvl up
+
+Watching for one shot is not an effective gauge for exp when 2/3/4 shotting stronger mobs take precedence for exp bonuses. 
+  To do for Shannon, track scaling of dmg vs hp vs exp. Dps vs xp gain rate vs exp per level up, how fast or slow is the game.
+  Following, what are the rewards for fighting/beating mobs at similar level to player, incentives for not just power grinding stats. 
+    (Look at item scaling)
+
+Equipment:
+Weapons:
+Current idea: dmg = base + lvl bonus + stat points bonus + weapon bonus
+  Track: attack speed of weapons, balance between weapon types, high attack speed utilizes other bonuses more than lower attack speed by a factor. 
+      Introduce: Crit/ dmg mutliplier effects for slower weapons? e.g. Hammer = Flat dmg bonus + Total dmg multiplier? (to offset attackspeed) 
+      Balancing too close will lead to lack of customizability where players may not feel the impact of different weapons. 
+      High dmg should lean towards killing in less hits but with less efficiency due to overdamage to mobs.
+      High attack speed would have lower damage and thus less waste through overdamage.
+
+Armor/Accessories
+With no armor/dmg reduction stats, armor = hp/hpregen. Accessories = dmg bonus? 
+Or just aesthetic for when sprites are in.
+
+
+Region ideas:
+Region 0:
+Determining mob level for spawn and testing number limits.
+Deviation of -4 to + 5 levels of player for region 0 to test scaling limit.
+At what point will mobs just win with no input if at all, or what level does the game stall out.
+
+Region 1: 
+Testing lvl 1-10 mobs vs player. Will level 1 stall and die too often, is early levels already too idle and interaction not improving play.
+
+Region 2: 
+Testing for new mobs
+
+Region 3:
+Test for multiple mob 1v2, 1v3, 1v4 capabilities
+Damage allocation to single source at a time with multiple sources attacking
+
+
+
+
+
+
+
