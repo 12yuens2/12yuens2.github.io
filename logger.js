@@ -1,19 +1,24 @@
 var logger = {
-	node: $("#logger"),
+	node: null,
 	max_messages: 15,
+
+	init: function() {
+		logger.node = $("#logger");
+	},
+
 	log: function(message) {
 		var log = document.createElement("div");
 		$(log).addClass("log")
 			  .html(message);
 
-		$("#logger").append(log);
+		logger.node.append(log);
 
 		//scroll to bottom
-		$("#logger").scrollTop($("#logger")[0].scrollHeight)
+		logger.node.scrollTop(logger.node[0].scrollHeight)
 
 		//remove if too many logs
-		if ($("#logger").children().length > logger.max_messages) {
-			$("#logger").find(":first-child").remove();
+		if (logger.node.children().length > logger.max_messages) {
+			logger.node.find(":first-child").remove();
 		}
 	},
 

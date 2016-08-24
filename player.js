@@ -21,7 +21,7 @@ var player = {
 	death_message: "Player killed. Respawning...",
 
 	/** player functions **/
-	load: function() {
+	init: function() {
 		var p = this
 		player.node = $("#player");
 
@@ -31,7 +31,7 @@ var player = {
 			player.populate_stats(player_info);
 
 			//stats on ui
-			entity.populateEntityNode(p, player.node, player_info);
+			world.populateEntityNode(p, player.node, player_info);
 		});
 
 	},

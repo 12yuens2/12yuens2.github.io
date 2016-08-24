@@ -1,13 +1,15 @@
 var engine = {
 	run: null,
-	tick: 100,
+	tick: 500,
 
 	init: function() {
-		player.load();
-		monster.load();
+		logger.init();
+		player.init();
+		monster.init();
+
 		ui.init();
 		bag.init();
-		entity.load_weapons();
+		world.init();
 
 		engine.run = setInterval(engine.move, engine.tick);
 	},

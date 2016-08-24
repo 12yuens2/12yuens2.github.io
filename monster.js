@@ -28,26 +28,17 @@ var monster =  {
 
 
 	/** monster functions **/
-	load: function() {
+	init: function() {
 		monster.node = $("#monster");
-
-		$.getJSON("./data/monsters.json", function(monsters) {
-			monster.list = monsters;
-			monster.create_random();
-		});
-
 	},
-	create_random: function() {
-		var random_monster = monster.list[Math.floor(Math.random()*monster.list.length)];
-		monster.create(random_monster);
-	},
+
 	create: function(monster_info) {
 
 		//change monster internal stats
 		monster.populate_stats(monster_info);
 
 		//change text in ui
-		entity.populateEntityNode(this, monster.node, monster_info);
+		world.populateEntityNode(this, monster.node, monster_info);
 
 		monster.death_message = monster.name + " killed! Got " + monster.exp + " experience!";
 	},
@@ -70,7 +61,7 @@ var monster =  {
 			//populate potenial drops
 			$.each(monster.drop_table, function(k, v) {
 				if (v < rarity) {
-					drops.push(entity.weapons[k]);
+					drops.push(world.weapons[k]);
 				}
 			});
 
@@ -104,7 +95,7 @@ var monster =  {
 	},
 
 	respawn: function() {
-		monster.create_random();
+		world.spawn_random();
 	}
 
 };

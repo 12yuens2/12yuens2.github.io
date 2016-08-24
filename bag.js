@@ -19,8 +19,7 @@ var bag = {
 		logger.log("Sold " + bag.items[index].name + " for " + bag.items[index].sell_value + "g");
 
 		bag.items.splice(index, 1);
-
-		console.log(index + "  " + bag.items);
+		
 		ui.update_bag();
 	},
 

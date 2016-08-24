@@ -1,0 +1,72 @@
+[
+	{
+		"name": "m1",
+		"hp": 10,
+		"dmg": 1,
+		"exp": 3,
+		"lvl": 1,
+
+		"atk_spd": 1,
+		"drop_chance": 100,
+		"drop_table" : {
+							"s1": 50,
+							"d1": 20
+						},
+		"gold_max": 20,
+		"gold_min": 5
+	},
+
+	{
+		"name": "m2",
+		"hp": 15,
+		"dmg": 2,
+		"exp": 7,
+		"lvl": 1,
+
+		"atk_spd": 1,
+		"drop_chance": 111,
+		"drop_table" : {
+							"s1": 40,
+							"d1": 25
+						},
+		"gold_max": 40,
+		"gold_min": 1
+	},
+
+	{
+		"name": "m3",
+		"hp": 12,
+		"dmg": 5,
+		"exp": 12,
+		"lvl": 1,
+
+		"atk_spd": 3,
+		"drop_chance": 150,
+		"drop_table" : {
+							"s1": 20,
+							"d1": 20,
+							"a1": 20
+						},
+		"gold_max": 30,
+		"gold_min": 25	
+	},
+
+	{
+		"name": "b1",
+		"hp": 100,
+		"dmg": 21,
+		"exp": 300,
+		"lvl": 1,
+
+		"atk_spd": 3,
+		"drop_chance": 150,
+		"drop_table" : {
+							"s1": 10,
+							"d1": 10,
+							"a1": 10,
+							"g1": 50
+						},
+		"gold_max": 200,
+		"gold_min": 100	
+	}
+]
