@@ -1,0 +1,13 @@
+notes
+
+where x = lvl 
+exp to lvl = x^2 
+player stat:
+hp = 100+10x
+dmg = 10+5x
+
+Mob stat:
+hp = 100+20x
+dmg = 10+2x
+
++some Y, where y = points allocated on lvl up
