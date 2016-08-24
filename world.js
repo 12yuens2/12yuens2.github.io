@@ -1,18 +1,40 @@
 var world = {
-	region: "",
+	region: "r1",
+	next_region: "r1",
+	changing_region: false,
 	weapons: "",
 
 	mobs: null,
 	mob: null,
 
 	init: function() {
-		world.change_region("r1");
+		world.move();
 	},
 
 	change_region: function(region) {
-		world.region = region;
+		logger.log("Moving to " + region + " after next kill/death");
+
+		world.next_region = region;
+		world.changing_region = true;
+
+		$(".regions").children().each(function() {
+			$(this).prop("disabled", true);
+		});
+	},
+
+	move: function() {
+		logger.log("Arriving at " + world.next_region);
+
+		world.region = world.next_region;
+		world.changing_region = false;
+		monster.node.html("");
 		world.load_mobs();
 		world.load_weapons();
+
+		$(".regions").children().each(function() {
+			$(this).prop("disabled", false);
+		});
+
 	},
 
 	load_mobs: function() {

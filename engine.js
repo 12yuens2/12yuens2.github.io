@@ -42,7 +42,12 @@ var engine = {
 	check_health: function(entity) {
 		if (entity.hp < 1) {
 			entity.kill();
-			entity.respawn();
+
+			if (world.changing_region) {
+				world.move();
+			} else {
+				entity.respawn();
+			}
 		}
 	},
 
