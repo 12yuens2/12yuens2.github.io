@@ -63,7 +63,6 @@ var world = {
 				.html(stats[i] + ": " + entity_info[stats[i]]);
 
 			node.append(stat);
-			node.append("<br>");
 		}
 
 		//progress bar
