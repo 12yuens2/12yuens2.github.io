@@ -1,6 +1,6 @@
 var player = {
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
-	visible_stats: ["name", "hp", "dmg", "exp", "lvl", "gold", "weapon"],
+	visible_stats: ["name", "hp", "dmg","points", "exp", "lvl", "gold", "weapon"],
 	node: $("#player"),
 
 	/** player stats **/
@@ -12,12 +12,15 @@ var player = {
 	lvl: 0,
 	gold: 0,
 	weapon: "None",
+	points: 0,
 
+	exp_next: 0,
 	atk_spd: 0,
 	atk_cd: 0,
 	heal_spd: 5,
 	heal_cd: 0,
 	equiped_weapon: null,
+	weapon_dmg: 0,
 
 	/** misc **/
 	death_message: "Player killed. Respawning...",
@@ -47,6 +50,7 @@ var player = {
 
 		player.atk_cd = player.atk_spd;
 		player.max_hp = player.hp;
+		player.exp_next = 100;
 	},
 
 	equip: function(weapon_index) {
@@ -60,11 +64,10 @@ var player = {
 			bag.items.push(player.equiped_weapon);
 		}
 		player.equiped_weapon = weapon;
-		player.weapon = weapon.name;
+		player.weapon = weapon.name + " +" + weapon.dmg ;
 		player.atk_spd = weapon.atk_spd;
 
-		//change later to be addition instead of replace dmg
-		player.dmg = weapon.dmg;
+		player.weapon_dmg = weapon.dmg;
 
 		ui.update_bag();
 	},
@@ -72,8 +75,18 @@ var player = {
 	level_up: function(exp) {
 		player.exp -= exp;
 		player.lvl += 1;
+		player.points += 2;
+		player.exp_next = player.exp_next + Math.pow(player.lvl, 2);
 
 		logger.log("Leveled up! Now level " + player.lvl);
+	},
+
+	deal_dmg: function() {
+		return player.dmg + player.weapon_dmg;
+	},
+
+	take_dmg: function(dmg) {
+		player.hp -= dmg;
 	},
 
 	heal: function() {

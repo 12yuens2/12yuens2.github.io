@@ -30,7 +30,7 @@ var engine = {
 	},
 	check_atk: function(dealer, taker) {
 		if (dealer.atk_cd == 0) {
-			taker.hp -= dealer.dmg;
+			taker.take_dmg(dealer.deal_dmg());
 			dealer.atk_cd = dealer.atk_spd;
 
 			ui.animate_atk(dealer);
@@ -56,8 +56,8 @@ var engine = {
 	},
 
 	check_exp: function() {
-		while(player.exp >= 100) {
-			player.level_up(100);
+		while(player.exp >= player.exp_next) {
+			player.level_up(player.exp_next);
 		}
 	},
 
