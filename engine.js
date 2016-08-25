@@ -41,15 +41,17 @@ var engine = {
 
 	check_health: function(entity) {
 		if (entity.hp < 1) {
-			ui.update_cdbar(entity, entity.node)
+			ui.update_hpbar(entity, entity.node)
 
-			entity.kill();
+			setTimeout(function () {
+				entity.kill();
 
-			if (world.changing_region) {
-				world.move();
-			} else {
-				entity.respawn();
-			}
+				if (world.changing_region) {
+					world.move();
+				} else {
+					entity.respawn();
+				}
+			}, engine.tick/3);
 		}
 	},
 

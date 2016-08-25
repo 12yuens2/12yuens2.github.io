@@ -88,7 +88,6 @@ var player = {
 		}
 
 		ui.update();
-		ui.update_heal();
 
 		player.heal_cd = player.heal_spd;
 	},

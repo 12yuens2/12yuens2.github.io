@@ -15,24 +15,35 @@ var ui = {
 				var stat = $(this).attr("class");
 
 				if (!($.inArray(stat, e.visible_stats) == -1)) {
-
-					$(this).html(stat + ": " + e[stat]);
+					var display = e[stat];
+					if (parseInt(display) < 1) {
+						display = 0;
+					}
+					$(this).html(stat + ": " + display);
 				}
 			});
 
-			ui.update_cdbar(e, this);
+			ui.update_hpbar(e, this);
 		});
 
-		ui.update_heal();
+		ui.update_buttons();
 	},
 
-	update_heal: function() {
-		var button = $(".heal");
+	update_buttons: function() {
+		var heal_button = $(".heal");
 		if (player.hp < player.max_hp && player.heal_cd < 1) {
-			button.prop("disabled", false);
+			heal_button.prop("disabled", false);
 		} else {
-			button.prop("disabled", true);
+			heal_button.prop("disabled", true);
 			player.heal_cd -= 1;
+		}
+
+		var dmg_button = $(".damage");
+		if (monster.dmg_cd < 1) {
+			dmg_button.prop("disabled", false);
+		} else {
+			dmg_button.prop("disabled", true);
+			monster.dmg_cd -= 1;
 		}
 	},
 
@@ -46,12 +57,12 @@ var ui = {
 		});
 	},
 
-	update_cdbar: function(entity, node) {
+	update_hpbar: function(entity, node) {
 		var bar_node = $(node).find("div.progress").children()[0];
 		// var bar_width = ((entity.atk_spd - entity.atk_cd) / entity.atk_spd) * 100;
 
 		var bar_width = parseInt((entity.hp / entity.max_hp)*100) 
-		$(bar_node).animate({width: bar_width}, engine.tick);
+		$(bar_node).animate({width: bar_width}, engine.tick/3);
 	},
 
 	update_bag: function() {

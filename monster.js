@@ -23,6 +23,7 @@ var monster =  {
 	atk_cd: 3,
 	gold_max: 0,
 	gold_min: 0,
+	dmg_cd: 0,
 
 	/** misc **/
 	death_message: "",
@@ -80,6 +81,17 @@ var monster =  {
 
 
 		}
+	},
+
+	damage: function() {
+		$(".damage").prop("disabled", true);
+
+		var damage = 10;
+
+		monster.hp -= damage;
+		ui.update();
+
+		monster.dmg_cd = 7;
 	},
 
 	kill: function() {
