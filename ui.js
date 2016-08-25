@@ -16,10 +16,14 @@ var ui = {
 
 				if (!($.inArray(stat, e.visible_stats) == -1)) {
 					var display = e[stat];
-					if (parseInt(display) < 1) {
-						display = 0;
+					if (stat == "hp") {
+						if (parseInt(display) < 1) {
+							display = 0;	
+						}
+						$(this).html(stat + ": " + display + "/" + e.max_hp);
+					} else {
+						$(this).html(stat + ": " + display);
 					}
-					$(this).html(stat + ": " + display);
 				}
 			});
 

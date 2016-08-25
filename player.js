@@ -1,7 +1,15 @@
 var player = {
+	BASE_EXP: 100,
+	EXP_TO_LEVEL_EXPONENT: 2,
+
+	STAT_POINTS_PER_LEVEL: 1,
+	DMG_PER_STAT_POINT: 10,
+	HP_PER_STAT_POINT: 20,
+
+	HEAL_BUTTON_AMOUNT: 30,
+
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
 	visible_stats: ["name", "hp", "dmg","points", "exp", "lvl", "gold", "weapon"],
-	addable_stats: ["hp", "dmg"],
 	node: $("#player"),
 
 	/** player stats **/
@@ -51,7 +59,7 @@ var player = {
 
 		player.atk_cd = player.atk_spd;
 		player.max_hp = player.hp;
-		player.exp_next = 100;
+		player.exp_next = player.BASE_EXP;
 	},
 
 	equip: function(weapon_index) {
@@ -76,23 +84,22 @@ var player = {
 	level_up: function(exp) {
 		player.exp -= exp;
 		player.lvl += 1;
-		player.points += 1;
-		player.exp_next = player.exp_next + Math.pow(player.lvl, 2);
+		player.points += player.STAT_POINTS_PER_LEVEL;
+		player.exp_next = player.exp_next + Math.pow(player.lvl, player.EXP_TO_LEVEL_EXPONENT);
 		player.hp = player.max_hp;
 
 		logger.log("Leveled up! Now level " + player.lvl);
 	},
 
 	add_stat: function(stat) {
-		console.log(stat);
 		if (player.points > 0) {
 			switch (stat) {
 				case "dmg":
-					player.dmg += 10;
+					player.dmg += player.DMG_PER_STAT_POINT;
 					break;
 				case "hp":
-					player.max_hp += 20;
-					player.hp += 20;
+					player.max_hp += player.HP_PER_STAT_POINT;
+					player.hp += player.HP_PER_STAT_POINT;
 				default:
 					break;
 			}
@@ -113,7 +120,7 @@ var player = {
 	heal: function() {
 		$(".heal").prop("disabled", true);
 
-		var heal = parseInt(player.max_hp / 3);
+		var heal = player.HEAL_BUTTON_AMOUNT;
 
 		if (heal + player.hp > player.max_hp) {
 			player.hp = player.max_hp;
@@ -122,7 +129,6 @@ var player = {
 		}
 
 		ui.update();
-
 		player.heal_cd = player.heal_spd;
 	},
 

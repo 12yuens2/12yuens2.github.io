@@ -1,4 +1,6 @@
 var engine = {
+	ANIMATION_DIVISOR: 3,
+
 	run: null,
 	tick: 500,
 
@@ -51,7 +53,7 @@ var engine = {
 				} else {
 					entity.respawn();
 				}
-			}, engine.tick/3);
+			}, engine.tick/engine.ANIMATION_DIVISOR);
 		}
 	},
 

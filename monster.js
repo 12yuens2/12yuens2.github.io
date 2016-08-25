@@ -1,4 +1,8 @@
 var monster =  {
+	DMG_MULTIPLIER: 2,
+	HP_MULTIPLIER: 20,
+	DMG_BUTTON_CD: 7,
+
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk-spd", "drop_chance", "drop_table", "gold_max", "gold_min"],
 	visible_stats: ["name", "hp", "dmg", "exp", "lvl"],
 	node: $("#monster"),
@@ -53,8 +57,9 @@ var monster =  {
 		var min = world.min_lvl;
 		monster.lvl = Math.floor(Math.random()*(max-min+1)) + min;
 		monster.atk_cd = monster.atk_spd;
-		monster.hp = monster.hp + 20*monster.lvl;
+		monster.hp = monster.hp + monster.HP_MULTIPLIER*monster.lvl;
 		monster.max_hp = monster.hp;
+		monster.dmg = monster.dmg + monster.DMG_MULTIPLIER*monster.lvl;
 	},
 
 
@@ -88,7 +93,7 @@ var monster =  {
 	},
 
 	deal_dmg: function() {
-		return monster.dmg + 2*monster.lvl
+		return monster.dmg;
 	},
 
 	take_dmg: function(dmg) {
@@ -103,7 +108,7 @@ var monster =  {
 		monster.hp -= damage;
 		ui.update();
 
-		monster.dmg_cd = 7;
+		monster.dmg_cd = monster.DMG_BUTTON_CD;
 	},
 
 	kill: function() {

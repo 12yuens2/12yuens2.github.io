@@ -67,7 +67,7 @@ var world = {
 				.addClass(stats[i])
 				.html(stats[i] + ": " + entity_info[stats[i]]);
 
-			if (entity == player && $.inArray(stats[i]), player.addable_stats) {
+			if (entity == player) {
 				$(stat).attr("onclick", "player.add_stat(this.className);");
 			}
 
