@@ -34,7 +34,7 @@ var ui = {
 	},
 
 	update_buttons: function() {
-		var heal_button = $(".heal");
+		var heal_button = $(".heal_button");
 		if (player.hp < player.max_hp && player.heal_cd < 1) {
 			heal_button.prop("disabled", false);
 		} else {
@@ -42,13 +42,19 @@ var ui = {
 			player.heal_cd -= 1;
 		}
 
-		var dmg_button = $(".damage");
+		var heal_up = $(".heal_up");
+		heal_up.attr("value", "upgrade heal\n "+player.heal_cost+"g");		
+
+		var dmg_button = $(".damage_button");
 		if (monster.dmg_cd < 1) {
 			dmg_button.prop("disabled", false);
 		} else {
 			dmg_button.prop("disabled", true);
 			monster.dmg_cd -= 1;
 		}
+
+		var dmg_up = $(".damage_up");
+		dmg_up.attr("value", "upgrade dmg\n "+player.dmg_cost+"g");
 	},
 
 	update_region: function() {
@@ -59,6 +65,8 @@ var ui = {
 				$(this).prop("disabled", false);
 			}
 		});
+
+		$(".region").html("Currently in region " + world.region);
 	},
 
 	update_hpbar: function(entity, node) {

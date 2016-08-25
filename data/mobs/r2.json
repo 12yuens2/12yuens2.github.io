@@ -1,11 +1,11 @@
 {
-	"max_lvl": 20,
-	"min_lvl": 10,
+	"max_lvl": 10,
+	"min_lvl": 1,
 	"mobs": [{
 		"name": "m2-1",
 		"hp": 20,
 		"dmg": 2,
-		"exp": 3,
+		"exp": 5,
 		"lvl": 1,
 
 		"atk_spd": 1,
@@ -22,7 +22,7 @@
 		"name": "m2-2",
 		"hp": 30,
 		"dmg": 4,
-		"exp": 7,
+		"exp": 10,
 		"lvl": 1,
 
 		"atk_spd": 1,
@@ -39,7 +39,7 @@
 		"name": "m2-3",
 		"hp": 32,
 		"dmg": 15,
-		"exp": 12,
+		"exp": 15,
 		"lvl": 1,
 
 		"atk_spd": 2,
@@ -57,7 +57,7 @@
 		"name": "b2",
 		"hp": 200,
 		"dmg": 50,
-		"exp": 412,
+		"exp": 200,
 		"lvl": 1,
 
 		"atk_spd": 3,

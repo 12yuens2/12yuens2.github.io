@@ -33,10 +33,17 @@
 				</div>
 			</div>
 
-			<input type="button" class="user_button heal left" value="heal" onclick="player.heal()">
-			<input type="button" class="user_button damage right" value="damage" onclick="monster.damage()">
+			<input type="button" class="user_button heal heal_button left" value="heal" onclick="player.heal(false)">
+			<input type="button" class="user_button heal heal_up left" value="upgrade heal&#13 80g" onclick="player.heal(true);">
 
-			<div class="regions" style="margin-top: 50px;float: left; clear: both;">
+			
+			<input type="button" class="user_button damage damage_button right" value="damage" onclick="monster.damage(false)">
+			<input type="button" class="user_button damage damage_up right" value="upgrade dmg" onclick="monster.damage(true)">
+
+
+			<div class="region" style="margin-top: 10px;float: left; clear: both;"></div>
+
+			<div class="regions" style="margin-top: 20px;float: left; clear: both;">
 				<input type="button" value="r1" onclick="world.change_region(this.value)">
 				<input type="button" value="r2" onclick="world.change_region(this.value);">
 				<input type="button" value="r3" onclick="world.change_region(this.value);">

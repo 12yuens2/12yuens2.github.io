@@ -1,5 +1,5 @@
 {
-	"max_lvl": 10,
+	"max_lvl": 5,
 	"min_lvl": 1,
 	"mobs": [{
 		"name": "m1",
@@ -57,7 +57,7 @@
 		"name": "b1",
 		"hp": 100,
 		"dmg": 21,
-		"exp": 300,
+		"exp": 100,
 		"lvl": 1,
 
 		"atk_spd": 3,

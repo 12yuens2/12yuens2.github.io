@@ -42,6 +42,13 @@ var engine = {
 	},
 
 	check_health: function(entity) {
+		if (entity == player && player.hp < player.max_hp) {
+			player.hp += player.hp_regen;
+			if (player.hp > player.max_hp) {
+				player.hp = player.max_hp;
+			}
+			ui.update();
+		}
 		if (entity.hp < 1) {
 			ui.update_hpbar(entity, entity.node)
 

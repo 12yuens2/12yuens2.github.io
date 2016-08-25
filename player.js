@@ -7,6 +7,9 @@ var player = {
 	HP_PER_STAT_POINT: 20,
 
 	HEAL_BUTTON_AMOUNT: 30,
+	DMG_BUTTON_AMOUNT: 10,
+
+	HP_REGEN_DIVISOR: 50,
 
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
 	visible_stats: ["name", "hp", "dmg","points", "exp", "lvl", "gold", "weapon"],
@@ -28,6 +31,9 @@ var player = {
 	atk_cd: 0,
 	heal_spd: 5,
 	heal_cd: 0,
+	heal_cost: 15,
+	dmg_cost: 30,
+	hg_regen: 0,
 	equiped_weapon: null,
 	weapon_dmg: 0,
 
@@ -60,6 +66,7 @@ var player = {
 		player.atk_cd = player.atk_spd;
 		player.max_hp = player.hp;
 		player.exp_next = player.BASE_EXP;
+		player.hp_regen = parseInt(player.max_hp/player.HP_REGEN_DIVISOR);
 	},
 
 	equip: function(weapon_index) {
@@ -117,19 +124,27 @@ var player = {
 		player.hp -= dmg;
 	},
 
-	heal: function() {
-		$(".heal").prop("disabled", true);
+	heal: function(upgrade) {
+		if (upgrade && player.gold > player.heal_cost) {
+			player.HEAL_BUTTON_AMOUNT += 10;
+			player.gold -= player.heal_cost;
+			player.heal_cost += player.heal_cost;
+		} else if (!upgrade){
+			$(".heal_button").prop("disabled", true);
 
-		var heal = player.HEAL_BUTTON_AMOUNT;
+			var heal = player.HEAL_BUTTON_AMOUNT;
 
-		if (heal + player.hp > player.max_hp) {
-			player.hp = player.max_hp;
+			if (heal + player.hp > player.max_hp) {
+				player.hp = player.max_hp;
+			} else {
+				player.hp += heal;
+			}
+			player.heal_cd = player.heal_spd;
 		} else {
-			player.hp += heal;
+			logger.log("Not enough gold to upgrade!");
 		}
 
 		ui.update();
-		player.heal_cd = player.heal_spd;
 	},
 
 	kill: function() {

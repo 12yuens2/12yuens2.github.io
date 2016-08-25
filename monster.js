@@ -1,6 +1,7 @@
 var monster =  {
 	DMG_MULTIPLIER: 2,
 	HP_MULTIPLIER: 20,
+	EX_MULTIPLIER: 10,
 	DMG_BUTTON_CD: 7,
 
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk-spd", "drop_chance", "drop_table", "gold_max", "gold_min"],
@@ -57,9 +58,12 @@ var monster =  {
 		var min = world.min_lvl;
 		monster.lvl = Math.floor(Math.random()*(max-min+1)) + min;
 		monster.atk_cd = monster.atk_spd;
-		monster.hp = monster.hp + monster.HP_MULTIPLIER*monster.lvl;
+
+		//change stats based on level
+		monster.hp += monster.HP_MULTIPLIER*monster.lvl;
 		monster.max_hp = monster.hp;
-		monster.dmg = monster.dmg + monster.DMG_MULTIPLIER*monster.lvl;
+		monster.dmg += monster.DMG_MULTIPLIER*monster.lvl;
+		monster.exp += monster.EX_MULTIPLIER*monster.lvl;
 	},
 
 
@@ -100,15 +104,20 @@ var monster =  {
 		monster.hp -= dmg;
 	},
 
-	damage: function() {
-		$(".damage").prop("disabled", true);
+	damage: function(upgrade) {
+		if (upgrade && player.gold > player.dmg_cost) {
+			player.DMG_BUTTON_AMOUNT += 10;
+			player.gold -= player.dmg_cost;
+			player.dmg_cost += player.dmg_cost;
+		} else if (!upgrade) {
+			$(".damage_button").prop("disabled", true);
 
-		var damage = 10;
-
-		monster.hp -= damage;
+			monster.hp -= player.DMG_BUTTON_AMOUNT;
+			monster.dmg_cd = monster.DMG_BUTTON_CD;
+		} else {
+			logger.log("Not enough gold to upgrade!");
+		}
 		ui.update();
-
-		monster.dmg_cd = monster.DMG_BUTTON_CD;
 	},
 
 	kill: function() {
