@@ -1,6 +1,7 @@
 var player = {
 	stats: ["name", "hp", "dmg", "exp", "lvl", "atk_spd", "gold"],
 	visible_stats: ["name", "hp", "dmg","points", "exp", "lvl", "gold", "weapon"],
+	addable_stats: ["hp", "dmg"],
 	node: $("#player"),
 
 	/** player stats **/
@@ -75,10 +76,30 @@ var player = {
 	level_up: function(exp) {
 		player.exp -= exp;
 		player.lvl += 1;
-		player.points += 2;
+		player.points += 1;
 		player.exp_next = player.exp_next + Math.pow(player.lvl, 2);
+		player.hp = player.max_hp;
 
 		logger.log("Leveled up! Now level " + player.lvl);
+	},
+
+	add_stat: function(stat) {
+		console.log(stat);
+		if (player.points > 0) {
+			switch (stat) {
+				case "dmg":
+					player.dmg += 10;
+					break;
+				case "hp":
+					player.max_hp += 20;
+					player.hp += 20;
+				default:
+					break;
+			}
+
+			player.points -= 1;
+			ui.update();
+		}
 	},
 
 	deal_dmg: function() {

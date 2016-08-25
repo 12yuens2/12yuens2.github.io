@@ -49,7 +49,9 @@ var monster =  {
 		for (var i = 0; i<monster.stats.length; i++) {
 			monster[monster.stats[i]] = new_monster[monster.stats[i]];
 		}
-		monster.lvl = Math.floor(Math.random()*5) + 1;
+		var max = world.max_lvl;
+		var min = world.min_lvl;
+		monster.lvl = Math.floor(Math.random()*(max-min+1)) + min;
 		monster.atk_cd = monster.atk_spd;
 		monster.hp = monster.hp + 20*monster.lvl;
 		monster.max_hp = monster.hp;
@@ -90,7 +92,6 @@ var monster =  {
 	},
 
 	take_dmg: function(dmg) {
-		console.log(dmg);
 		monster.hp -= dmg;
 	},
 

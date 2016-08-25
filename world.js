@@ -6,6 +6,8 @@ var world = {
 
 	mobs: null,
 	mob: null,
+	max_lvl: 5,
+	min_lvl: 1,
 
 	init: function() {
 		world.move();
@@ -26,6 +28,7 @@ var world = {
 		world.region = world.next_region;
 		world.changing_region = false;
 		monster.node.html("");
+
 		world.load_mobs();
 		world.load_weapons();
 
@@ -36,8 +39,10 @@ var world = {
 	load_mobs: function() {
 		var region = world.region;
 
-		$.getJSON("./data/mobs/" + region + ".json", function(monsters) {
-			world.mobs = monsters;
+		$.getJSON("./data/mobs/" + region + ".json", function(region_info) {
+			world.mobs = region_info.mobs;
+			world.max_lvl = region_info.max_lvl;
+			world.min_lvl = region_info.min_lvl;
 			world.spawn_random();
 			world.mob = monster;
 		});
@@ -61,6 +66,10 @@ var world = {
 			$(stat)
 				.addClass(stats[i])
 				.html(stats[i] + ": " + entity_info[stats[i]]);
+
+			if (entity == player && $.inArray(stats[i]), player.addable_stats) {
+				$(stat).attr("onclick", "player.add_stat(this.className);");
+			}
 
 			node.append(stat);
 		}
