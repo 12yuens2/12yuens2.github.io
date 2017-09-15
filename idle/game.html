@@ -1,0 +1,73 @@
+<html>
+
+<head>
+	<!--Idle Monster Killing Simulator, Version 0.016-->
+	<title>Idle Slayer v0.016</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="logger.js"></script>
+	<script src="ui.js"></script>
+	<script src="world.js"></script>
+	<script src="bag.js"></script>
+	<script src="monster.js"></script>
+	<script src="player.js"></script>
+	<script src="engine.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="engine.init()">
+
+	<h1>Title</h1>
+
+	<div id="game"> 
+		<div id="mainScreen" class="left">
+
+			<div id="battleScreen" class="screen">
+				<div class="object left">
+					<img src="placeholder.jpg">
+					<div class="entity" id="player"></div>
+				</div>
+
+				<div class="object right">
+					<img src="placeholder.jpg">
+					<div class="entity" id="monster"></div>
+				</div>
+			</div>
+
+			<input type="button" class="user_button heal heal_button left" value="heal" onclick="player.heal(false)">
+			<input type="button" class="user_button heal heal_up left" value="upgrade heal&#13 80g" onclick="player.heal(true);">
+
+			
+			<input type="button" class="user_button damage damage_button right" value="damage" onclick="monster.damage(false)">
+			<input type="button" class="user_button damage damage_up right" value="upgrade dmg" onclick="monster.damage(true)">
+
+
+			<div class="region" style="margin-top: 10px;float: left; clear: both;"></div>
+
+			<div class="regions" style="margin-top: 20px;float: left; clear: both;">
+				<input type="button" value="r1" onclick="world.change_region(this.value)">
+				<input type="button" value="r2" onclick="world.change_region(this.value);">
+				<input type="button" value="r3" onclick="world.change_region(this.value);">
+			</div>
+
+			<div class="checkbox_option">
+				<input type="checkbox" id="killFilter" checked> Display monster kills
+			</div>
+
+			<div id="logger" class="left">
+
+			</div>
+		</div>
+
+		<div id="itemScreen" class="screen left">
+			<div id="bag" class="screen"></div>
+
+			<div>
+				<input type="checkbox" id="auto_sell" checked> Auto sell items
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
